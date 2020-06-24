@@ -70,79 +70,231 @@ public class CourseList implements Serializable {
 		String courseID = newCourse.getIDText().getText();
 		String location = newCourse.getLocationText().getText();
 		
-		try{
-			
-			int maxStudents = Integer.parseInt(maxStudentsString);	//make sure that the maxStudents is a number
-			newCourse.contentPane.remove(lblPleaseInputA);
-			newCourse.contentPane.setVisible(false);
-			newCourse.contentPane.setVisible(true);
-			
-				
-			
+		
+		
+		newCourse.contentPane.remove(lblPleaseInputA);
+		newCourse.contentPane.remove(lblNewLabel_1);
+		newCourse.contentPane.remove(newCourse.getLblThatSectionAlready());
+		newCourse.contentPane.remove(lblCongratsHasBeen);
+		newCourse.contentPane.setVisible(false);
+		newCourse.contentPane.setVisible(true);
+		
+		int same = 0;
+		int maxInt=0;
+		int sectionInt=0;
+		
+		for(int i=0;i<courses.size();i++) {
+			if(courses.get(i).getCourseName().toLowerCase().equals(courseName.toLowerCase()) && courses.get(i).getSection().equals(section)) {
+				same++;
+			}
 			
 		}
-		//if max students or section isn't a number say to input a number 
+		
+		try {
+			int maxStudents = Integer.parseInt(maxStudentsString);
+		}
 		catch(Exception e) {
+			maxInt++;
+		}
+		
+		try {
+			Integer.parseInt(section);
+		}
+		catch(Exception e){
+			sectionInt++;
+		}
+		
 
+		
+		if(maxInt>0 && sectionInt==0 && same==0) {
+		
+			
 			lblPleaseInputA = new JLabel("Please input a number.");
 			lblPleaseInputA.setForeground(new Color(255, 0, 0));
 			lblPleaseInputA.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
 			lblPleaseInputA.setBounds(133, 205, 181, 16);
 			newCourse.contentPane.add(lblPleaseInputA);
-			System.out.println("max");
-			
-			
-			
-			
-		}
-		try {
-			Integer.parseInt(section);
-			newCourse.contentPane.remove(lblNewLabel_1);
 			newCourse.contentPane.setVisible(false);
 			newCourse.contentPane.setVisible(true);
+			
 		}
-		catch(Exception ne) {
+		else if(sectionInt>0 && maxInt==0 && same==0) {
+			
 			lblNewLabel_1 = new JLabel("Please input a number.");
 			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
 			lblNewLabel_1.setForeground(new Color(255, 0, 0));
 			lblNewLabel_1.setBounds(133, 296, 158, 16);
 			newCourse.contentPane.add(lblNewLabel_1);
-			System.out.println("section");
-
-
-		}
-		try {
-			
-			int maxStudents = Integer.parseInt(maxStudentsString);
-			Integer.parseInt(section);
-			newCourse.contentPane.remove(lblPleaseInputA);
-			
-			
 			newCourse.contentPane.setVisible(false);
 			newCourse.contentPane.setVisible(true);
 			
-			newCourse.contentPane.remove(lblNewLabel_1);
+		}
+		else if(sectionInt>0 && maxInt>0 && same==0) {
+		
 			
+			lblPleaseInputA = new JLabel("Please input a number.");
+			lblPleaseInputA.setForeground(new Color(255, 0, 0));
+			lblPleaseInputA.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
+			lblPleaseInputA.setBounds(133, 205, 181, 16);
+			newCourse.contentPane.add(lblPleaseInputA);
+			
+			lblNewLabel_1 = new JLabel("Please input a number.");
+			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
+			lblNewLabel_1.setForeground(new Color(255, 0, 0));
+			lblNewLabel_1.setBounds(133, 296, 158, 16);
+			newCourse.contentPane.add(lblNewLabel_1);
 			newCourse.contentPane.setVisible(false);
 			newCourse.contentPane.setVisible(true);
 			
-			ArrayList<String> firstNames = new ArrayList<String>();
-			ArrayList<String> lastNames = new ArrayList<String>();
-			//input all of these variables into the constructor to create the new object and add it into the courses list
-			courses.add(new Course(courseName, courseID, maxStudents, 0, firstNames ,lastNames, instructor, section, location));
-			System.out.println("You have successfully added "+courseName);
-			newCourse.contentPane.remove(lblPleaseInputA);
-			newCourse.contentPane.remove(lblNewLabel_1);
-			JLabel lblCongratsHasBeen = new JLabel("Congrats! "+ courseName+" has been successfully added.");
-			lblCongratsHasBeen.setBounds(71, 375, 389, 16);
-			newCourse.contentPane.add(lblCongratsHasBeen);
-			
 			
 		}
-		catch(Exception e){
-			System.out.println("Nice try");
+		else if(maxInt>0 && sectionInt==0 && same>0) {
+			
+			lblPleaseInputA = new JLabel("Please input a number.");
+			lblPleaseInputA.setForeground(new Color(255, 0, 0));
+			lblPleaseInputA.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
+			lblPleaseInputA.setBounds(133, 205, 181, 16);
+			newCourse.contentPane.add(lblPleaseInputA);
+			newCourse.contentPane.add(newCourse.getLblThatSectionAlready());
+			newCourse.contentPane.setVisible(false);
+			newCourse.contentPane.setVisible(true);
+			
+		}
+		else if(sectionInt>0 && maxInt==0 && same>0) {
+			
+			lblNewLabel_1 = new JLabel("Please input a number.");
+			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
+			lblNewLabel_1.setForeground(new Color(255, 0, 0));
+			lblNewLabel_1.setBounds(133, 296, 158, 16);
+			newCourse.contentPane.add(lblNewLabel_1);
+			newCourse.contentPane.add(newCourse.getLblThatSectionAlready());
+			newCourse.contentPane.setVisible(false);
+			newCourse.contentPane.setVisible(true);
+			
+		}
+		else if(maxInt==0 && sectionInt==0 && same>0) {
+			newCourse.contentPane.add(newCourse.getLblThatSectionAlready());
+			newCourse.contentPane.setVisible(false);
+			newCourse.contentPane.setVisible(true);
+		}
+		else if(sectionInt>0 && maxInt>0 && same>0) {
+			lblPleaseInputA = new JLabel("Please input a number.");
+			lblPleaseInputA.setForeground(new Color(255, 0, 0));
+			lblPleaseInputA.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
+			lblPleaseInputA.setBounds(133, 205, 181, 16);
+			newCourse.contentPane.add(lblPleaseInputA);
+			
+			lblNewLabel_1 = new JLabel("Please input a number.");
+			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
+			lblNewLabel_1.setForeground(new Color(255, 0, 0));
+			lblNewLabel_1.setBounds(133, 296, 158, 16);
+			newCourse.contentPane.add(lblNewLabel_1);
+			newCourse.contentPane.add(newCourse.getLblThatSectionAlready());
+			newCourse.contentPane.setVisible(false);
+			newCourse.contentPane.setVisible(true);
+			
+			
 		}
 		
+		else {
+			
+			
+				int maxStudents = Integer.parseInt(maxStudentsString);
+				ArrayList<String> firstNames = new ArrayList<String>();
+				ArrayList<String> lastNames = new ArrayList<String>();
+				//input all of these variables into the constructor to create the new object and add it into the courses list
+				courses.add(new Course(courseName, courseID, maxStudents, 0, firstNames ,lastNames, instructor, section, location));
+				System.out.println("You have successfully added "+courseName);
+				lblCongratsHasBeen = new JLabel("Congrats! "+ courseName+" has been successfully added.");
+				lblCongratsHasBeen.setBounds(71, 350, 430, 16);
+				newCourse.contentPane.add(lblCongratsHasBeen);
+		
+				newCourse.contentPane.setVisible(false);
+				newCourse.contentPane.setVisible(true);
+		}
+		
+		
+		
+		
+		
+		
+		
+//		
+//		
+//		
+//		try{
+//			
+//			int maxStudents = Integer.parseInt(maxStudentsString);	//make sure that the maxStudents is a number
+//			newCourse.contentPane.remove(lblPleaseInputA);
+//			newCourse.contentPane.setVisible(false);
+//			newCourse.contentPane.setVisible(true);
+//			
+//				
+//			
+//			
+//		}
+//		//if max students or section isn't a number say to input a number 
+//		catch(Exception e) {
+//
+//			lblPleaseInputA = new JLabel("Please input a number.");
+//			lblPleaseInputA.setForeground(new Color(255, 0, 0));
+//			lblPleaseInputA.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
+//			lblPleaseInputA.setBounds(133, 205, 181, 16);
+//			newCourse.contentPane.add(lblPleaseInputA);
+//			System.out.println("max");
+//			
+//			
+//			
+//			
+//		}
+//		try {
+//			Integer.parseInt(section);
+//			newCourse.contentPane.remove(lblNewLabel_1);
+//			newCourse.contentPane.setVisible(false);
+//			newCourse.contentPane.setVisible(true);
+//		}
+//		catch(Exception ne) {
+//			lblNewLabel_1 = new JLabel("Please input a number.");
+//			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
+//			lblNewLabel_1.setForeground(new Color(255, 0, 0));
+//			lblNewLabel_1.setBounds(133, 296, 158, 16);
+//			newCourse.contentPane.add(lblNewLabel_1);
+//			System.out.println("section");
+//
+//
+//		}
+//		try {
+//			
+//			int maxStudents = Integer.parseInt(maxStudentsString);
+//			Integer.parseInt(section);
+//			newCourse.contentPane.remove(lblPleaseInputA);
+//			
+//			
+//			newCourse.contentPane.setVisible(false);
+//			newCourse.contentPane.setVisible(true);
+//			
+//			newCourse.contentPane.remove(lblNewLabel_1);
+//			
+//			newCourse.contentPane.setVisible(false);
+//			newCourse.contentPane.setVisible(true);
+//			
+//			ArrayList<String> firstNames = new ArrayList<String>();
+//			ArrayList<String> lastNames = new ArrayList<String>();
+//			//input all of these variables into the constructor to create the new object and add it into the courses list
+//			courses.add(new Course(courseName, courseID, maxStudents, 0, firstNames ,lastNames, instructor, section, location));
+//			System.out.println("You have successfully added "+courseName);
+//			newCourse.contentPane.remove(lblPleaseInputA);
+//			newCourse.contentPane.remove(lblNewLabel_1);
+//			JLabel lblCongratsHasBeen = new JLabel("Congrats! "+ courseName+" has been successfully added.");
+//			lblCongratsHasBeen.setBounds(71, 375, 389, 16);
+//			newCourse.contentPane.add(lblCongratsHasBeen);
+//			
+//			
+//		}
+//		catch(Exception e){
+//			System.out.println("Nice try");
+//		}
+//		
 		
 		
 	}

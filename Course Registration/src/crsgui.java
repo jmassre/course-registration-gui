@@ -35,10 +35,10 @@ public class crsgui {
 	public static CourseList c = null;
 	
 	//filename
-    public static String filename = "SerializedFromGithub.ser"; 
+    public static String filename = "drun.ser"; 
     public static File f = new File(filename);
     public static Scanner scan = new Scanner(System.in);
-
+    ArrayList<Course> courses  = c.courses;
     
 	/**
 	 * Launch the application.
@@ -400,19 +400,20 @@ public class crsgui {
 								studentLogin.setVisible(true);
 							}
 						}
-						studentLogin.getBtnMainMenu().addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								frame.setVisible(true);
-								studentLogin.setVisible(false);
-							}
-						});
+						
 						
 					}
 					
 				});
-				
+				studentLogin.getBtnMainMenu().addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						frame.setVisible(true);
+						studentLogin.setVisible(false);
+					}
+				});
 					
 				}	
+			
 		});
 		btnStudent.setBounds(138, 150, 183, 73);
 		frame.getContentPane().add(btnStudent);
@@ -932,6 +933,18 @@ public class crsgui {
 											EditCourseTwoAdmin editCourse2 = new EditCourseTwoAdmin(index, c);
 											editCourse.setVisible(false);
 											editCourse2.setVisible(true);
+											
+											editCourse2.getBtnMainMenu().addActionListener(new ActionListener() {
+												public void actionPerformed(ActionEvent e) {
+													
+													
+													
+													
+													editCourse2.setVisible(false);
+													
+													editCourse.setVisible(true);
+												}
+											});
 											
 											
 											editCourse2.getBtnEditMax().addActionListener(new ActionListener() {

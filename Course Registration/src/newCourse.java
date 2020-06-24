@@ -31,6 +31,7 @@ public class newCourse extends JFrame {
 	private JLabel lblPleaseInputA;
 	public JButton btnMainMenu;
 	private JLabel lblNewLabel_1;
+	private static JLabel lblThatSectionAlready;
 
 	/**
 	 * Launch the application.
@@ -121,7 +122,7 @@ public class newCourse extends JFrame {
 		contentPane.add(locationText);
 		
 		btnCreate = new JButton("Create");
-		btnCreate.setBounds(158, 345, 117, 29);
+		btnCreate.setBounds(158, 373, 117, 29);
 		contentPane.add(btnCreate);
 		
 		btnLogOut = new JButton("Log Out");
@@ -131,6 +132,10 @@ public class newCourse extends JFrame {
 		btnMainMenu = new JButton("Main Menu");
 		btnMainMenu.setBounds(22, 423, 117, 29);
 		contentPane.add(btnMainMenu);
+		
+		lblThatSectionAlready = new JLabel("That section already exists. Please try again.");
+		lblThatSectionAlready.setForeground(new Color(255, 0, 0));
+		lblThatSectionAlready.setBounds(85, 355, 294, 16);
 		
 		
 		
@@ -179,4 +184,12 @@ public class newCourse extends JFrame {
 	public static JTextField getLocationText() {
 		return locationText;
 	}
+
+	/**
+	 * @return the lblThatSectionAlready
+	 */
+	public static JLabel getLblThatSectionAlready() {
+		return lblThatSectionAlready;
+	}
+	
 }

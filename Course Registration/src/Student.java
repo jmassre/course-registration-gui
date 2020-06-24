@@ -324,14 +324,20 @@ public class Student extends User implements studentInterface, Serializable {
 	public void withdrawGUI(CourseList c, int pos) {
 		ArrayList<Course> courses  = c.courses;
 		
+		
+		Course correctCourse = this.getRegisteredClasses().get(pos);
+				
 		WithdrawCourseStudent.contentPane.remove(WithdrawCourseStudent.getLblSuccess());
-		courses.get(pos).setCurrentStudents(courses.get(pos).getCurrentStudents()-1); //decreased amount of enrolled students 
+		correctCourse.setCurrentStudents(courses.get(pos).getCurrentStudents()-1); //decreased amount of enrolled students 
+		
+		
 		//remove names
-		courses.get(pos).getFirstNames().remove(this.getFirstName());
+		correctCourse.getFirstNames().remove(this.getFirstName());
 			
-		courses.get(pos).getLastNames().remove(this.getLastName());
+		correctCourse.getLastNames().remove(this.getLastName());
 		//remove the course from student's registered classs list
-		this.getRegisteredClasses().remove(courses.get(pos));
+		this.getRegisteredClasses().remove(correctCourse);
+		
 		WithdrawCourseStudent.contentPane.add(WithdrawCourseStudent.getLblSuccess());
 	}
 	/*

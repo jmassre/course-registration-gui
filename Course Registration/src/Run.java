@@ -47,8 +47,9 @@ public class Run  {
 			static CourseList c = null;
 			
 			//filename
-	        static String filename = "SerializedFromGithub.ser"; 
+	        static String filename = "drun.ser"; 
 	        static File f = new File(filename);
+	        ArrayList<Course> courses  = c.courses;
 	    public static void main(String[] args)  throws IOException {
 		
 		

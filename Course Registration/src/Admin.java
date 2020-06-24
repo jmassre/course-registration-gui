@@ -24,7 +24,7 @@ import javax.swing.JTextArea;
 
 public class Admin extends User implements adminInterface, Serializable {
 	public ArrayList<Student> studentRegistered= new ArrayList<Student>();
-	public static JLabel lblCongrats;
+	public JLabel lblCongrats;
 	static final long serialVersionUID = 43L;
 	//constructor sets admin properties from User class
 	public Admin(String username, String password) {
@@ -108,7 +108,7 @@ public class Admin extends User implements adminInterface, Serializable {
 			//remove it from the students registered classes
 			for (int j=0;j<this.studentRegistered.get(n).getRegisteredClasses().size();j++) {
 				if (this.studentRegistered.get(n).getRegisteredClasses().contains(courses.get(pos))) {
-					this.studentRegistered.get(n).getRegisteredClasses().remove(courses.get(pos).getCourseName());
+					this.studentRegistered.get(n).getRegisteredClasses().remove(courses.get(pos));
 				}
 			}
 			
@@ -427,8 +427,7 @@ public class Admin extends User implements adminInterface, Serializable {
 	public void registerGUI() {
 		
 		
-		lblCongrats = new JLabel("Congrats! "+ NewStudentAdmin.getFirstText().getText() +" "+  NewStudentAdmin.getLastText().getText()+" has been added.");
-		lblCongrats.setBounds(72, 356, 347, 16);
+		
 		
 		
 		
@@ -439,12 +438,13 @@ public class Admin extends User implements adminInterface, Serializable {
 		String ID = NewStudentAdmin.getIdText().getText();
 		
 		
-//		NewStudentAdmin.contentPane.remove(lblCongrats);
+		
 		NewStudentAdmin.contentPane.remove(NewStudentAdmin.getLabel());
 		
 		NewStudentAdmin.contentPane.remove(NewStudentAdmin.getLblThisUsernameAlready());
 
 		NewStudentAdmin.contentPane.remove(NewStudentAdmin.getLblNumber());
+		NewStudentAdmin.contentPane.remove(lblCongrats);
 		NewStudentAdmin.contentPane.setVisible(false);
 		NewStudentAdmin.contentPane.setVisible(true);
 		
@@ -495,13 +495,15 @@ public class Admin extends User implements adminInterface, Serializable {
 				//if they dont exist, create the student and add it to the studentRegistered list of student objects
 				studentRegistered.add(new Student(username, password, firstName, lastName, ID));
 				
-				
+				lblCongrats = new JLabel("Congrats! "+ NewStudentAdmin.getFirstText().getText() +" "+  NewStudentAdmin.getLastText().getText()+" has been added.");
+				lblCongrats.setBounds(72, 356, 347, 16);
 				NewStudentAdmin.contentPane.add(lblCongrats);
 				
 				
 				
 			}
 			catch(Exception e) {
+				NewStudentAdmin.contentPane.remove(lblCongrats);
 				NewStudentAdmin.contentPane.add(NewStudentAdmin.getLblNumber());
 				
 			}
