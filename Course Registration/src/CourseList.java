@@ -63,21 +63,21 @@ public class CourseList implements Serializable {
 	}
 	
 	public void newcourseGUI() {
-		String courseName = newCourse.getNameText().getText();
-		String instructor = newCourse.getInstructorText().getText();
-		String maxStudentsString = newCourse.getMaxText().getText();
-		String section = newCourse.getSectionText().getText();
-		String courseID = newCourse.getIDText().getText();
-		String location = newCourse.getLocationText().getText();
+		String courseName = NewCourse.getNameText().getText();
+		String instructor = NewCourse.getInstructorText().getText();
+		String maxStudentsString = NewCourse.getMaxText().getText();
+		String section = NewCourse.getSectionText().getText();
+		String courseID = NewCourse.getIDText().getText();
+		String location = NewCourse.getLocationText().getText();
 		
 		
 		
-		newCourse.contentPane.remove(lblPleaseInputA);
-		newCourse.contentPane.remove(lblNewLabel_1);
-		newCourse.contentPane.remove(newCourse.getLblThatSectionAlready());
-		newCourse.contentPane.remove(lblCongratsHasBeen);
-		newCourse.contentPane.setVisible(false);
-		newCourse.contentPane.setVisible(true);
+		NewCourse.contentPane.remove(lblPleaseInputA);
+		NewCourse.contentPane.remove(lblNewLabel_1);
+		NewCourse.contentPane.remove(NewCourse.getLblThatSectionAlready());
+		NewCourse.contentPane.remove(lblCongratsHasBeen);
+		NewCourse.contentPane.setVisible(false);
+		NewCourse.contentPane.setVisible(true);
 		
 		int same = 0;
 		int maxInt=0;
@@ -113,9 +113,9 @@ public class CourseList implements Serializable {
 			lblPleaseInputA.setForeground(new Color(255, 0, 0));
 			lblPleaseInputA.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
 			lblPleaseInputA.setBounds(133, 205, 181, 16);
-			newCourse.contentPane.add(lblPleaseInputA);
-			newCourse.contentPane.setVisible(false);
-			newCourse.contentPane.setVisible(true);
+			NewCourse.contentPane.add(lblPleaseInputA);
+			NewCourse.contentPane.setVisible(false);
+			NewCourse.contentPane.setVisible(true);
 			
 		}
 		else if(sectionInt>0 && maxInt==0 && same==0) {
@@ -124,9 +124,9 @@ public class CourseList implements Serializable {
 			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
 			lblNewLabel_1.setForeground(new Color(255, 0, 0));
 			lblNewLabel_1.setBounds(133, 296, 158, 16);
-			newCourse.contentPane.add(lblNewLabel_1);
-			newCourse.contentPane.setVisible(false);
-			newCourse.contentPane.setVisible(true);
+			NewCourse.contentPane.add(lblNewLabel_1);
+			NewCourse.contentPane.setVisible(false);
+			NewCourse.contentPane.setVisible(true);
 			
 		}
 		else if(sectionInt>0 && maxInt>0 && same==0) {
@@ -136,15 +136,15 @@ public class CourseList implements Serializable {
 			lblPleaseInputA.setForeground(new Color(255, 0, 0));
 			lblPleaseInputA.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
 			lblPleaseInputA.setBounds(133, 205, 181, 16);
-			newCourse.contentPane.add(lblPleaseInputA);
+			NewCourse.contentPane.add(lblPleaseInputA);
 			
 			lblNewLabel_1 = new JLabel("Please input a number.");
 			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
 			lblNewLabel_1.setForeground(new Color(255, 0, 0));
 			lblNewLabel_1.setBounds(133, 296, 158, 16);
-			newCourse.contentPane.add(lblNewLabel_1);
-			newCourse.contentPane.setVisible(false);
-			newCourse.contentPane.setVisible(true);
+			NewCourse.contentPane.add(lblNewLabel_1);
+			NewCourse.contentPane.setVisible(false);
+			NewCourse.contentPane.setVisible(true);
 			
 			
 		}
@@ -154,10 +154,10 @@ public class CourseList implements Serializable {
 			lblPleaseInputA.setForeground(new Color(255, 0, 0));
 			lblPleaseInputA.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
 			lblPleaseInputA.setBounds(133, 205, 181, 16);
-			newCourse.contentPane.add(lblPleaseInputA);
-			newCourse.contentPane.add(newCourse.getLblThatSectionAlready());
-			newCourse.contentPane.setVisible(false);
-			newCourse.contentPane.setVisible(true);
+			NewCourse.contentPane.add(lblPleaseInputA);
+			NewCourse.contentPane.add(NewCourse.getLblThatSectionAlready());
+			NewCourse.contentPane.setVisible(false);
+			NewCourse.contentPane.setVisible(true);
 			
 		}
 		else if(sectionInt>0 && maxInt==0 && same>0) {
@@ -166,32 +166,32 @@ public class CourseList implements Serializable {
 			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
 			lblNewLabel_1.setForeground(new Color(255, 0, 0));
 			lblNewLabel_1.setBounds(133, 296, 158, 16);
-			newCourse.contentPane.add(lblNewLabel_1);
-			newCourse.contentPane.add(newCourse.getLblThatSectionAlready());
-			newCourse.contentPane.setVisible(false);
-			newCourse.contentPane.setVisible(true);
+			NewCourse.contentPane.add(lblNewLabel_1);
+			NewCourse.contentPane.add(NewCourse.getLblThatSectionAlready());
+			NewCourse.contentPane.setVisible(false);
+			NewCourse.contentPane.setVisible(true);
 			
 		}
 		else if(maxInt==0 && sectionInt==0 && same>0) {
-			newCourse.contentPane.add(newCourse.getLblThatSectionAlready());
-			newCourse.contentPane.setVisible(false);
-			newCourse.contentPane.setVisible(true);
+			NewCourse.contentPane.add(NewCourse.getLblThatSectionAlready());
+			NewCourse.contentPane.setVisible(false);
+			NewCourse.contentPane.setVisible(true);
 		}
 		else if(sectionInt>0 && maxInt>0 && same>0) {
 			lblPleaseInputA = new JLabel("Please input a number.");
 			lblPleaseInputA.setForeground(new Color(255, 0, 0));
 			lblPleaseInputA.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
 			lblPleaseInputA.setBounds(133, 205, 181, 16);
-			newCourse.contentPane.add(lblPleaseInputA);
+			NewCourse.contentPane.add(lblPleaseInputA);
 			
 			lblNewLabel_1 = new JLabel("Please input a number.");
 			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.ITALIC, 13));
 			lblNewLabel_1.setForeground(new Color(255, 0, 0));
 			lblNewLabel_1.setBounds(133, 296, 158, 16);
-			newCourse.contentPane.add(lblNewLabel_1);
-			newCourse.contentPane.add(newCourse.getLblThatSectionAlready());
-			newCourse.contentPane.setVisible(false);
-			newCourse.contentPane.setVisible(true);
+			NewCourse.contentPane.add(lblNewLabel_1);
+			NewCourse.contentPane.add(NewCourse.getLblThatSectionAlready());
+			NewCourse.contentPane.setVisible(false);
+			NewCourse.contentPane.setVisible(true);
 			
 			
 		}
@@ -207,10 +207,10 @@ public class CourseList implements Serializable {
 				System.out.println("You have successfully added "+courseName);
 				lblCongratsHasBeen = new JLabel("Congrats! "+ courseName+" has been successfully added.");
 				lblCongratsHasBeen.setBounds(71, 350, 430, 16);
-				newCourse.contentPane.add(lblCongratsHasBeen);
+				NewCourse.contentPane.add(lblCongratsHasBeen);
 		
-				newCourse.contentPane.setVisible(false);
-				newCourse.contentPane.setVisible(true);
+				NewCourse.contentPane.setVisible(false);
+				NewCourse.contentPane.setVisible(true);
 		}
 		
 		

@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
 
-public class newCourse extends JFrame {
+public class NewCourse extends JFrame {
 
 	public static JPanel contentPane;
 	private static JTextField nameText;
@@ -40,7 +40,7 @@ public class newCourse extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					newCourse frame = new newCourse();
+					NewCourse frame = new NewCourse();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +52,7 @@ public class newCourse extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public newCourse() {
+	public NewCourse() {
 		setBackground(new Color(119, 136, 153));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500,100,480,480);

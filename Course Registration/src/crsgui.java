@@ -444,7 +444,7 @@ public class crsgui {
 							AdminMenu adminMenu = new AdminMenu();
 							adminMenu.setVisible(true);
 							
-							newCourse add = new newCourse();
+							NewCourse add = new NewCourse();
 							AllCoursesAdmin viewAll = new AllCoursesAdmin();
 							
 							adminMenu.btnCreateANew.addActionListener(new ActionListener() {
