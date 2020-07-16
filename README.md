@@ -1,3 +1,3 @@
 # course-registration-gui
 
-![][adminGIF.gif]
+![](adminGIF.gif)
