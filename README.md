@@ -13,5 +13,5 @@ In case you're short on time, here's a quick demo of the Admin menu:
 ![](https://github.com/jmassre/course-registration-gui/blob/master/AdminGIF.gif)
 
 
-....and here's a quick demo of the Student memu:
+....and here's a quick demo of the Student menu:
 ![](https://github.com/jmassre/course-registration-gui/blob/master/Student.gif)
