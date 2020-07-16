@@ -9,5 +9,9 @@ Upon the admin and students' every action, the program is then serialized, which
 
 For testing purposes, please login as an admin with the username "Admin" and the password "Admin001". If it is the first time running this program, please make sure to load in course information by clicking the "View all courses" button. After that, you're free to roam around and enjoy this program as you please!
 
-In case you're short on time, here's a quick demo of the Admin user:
+In case you're short on time, here's a quick demo of the Admin menu:
 ![](https://github.com/jmassre/course-registration-gui/blob/master/AdminGIF.gif)
+
+
+....and here's a quick demo of the Student memu:
+![](https://github.com/jmassre/course-registration-gui/blob/master/Student.gif)
