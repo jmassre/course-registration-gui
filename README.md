@@ -1,3 +1,3 @@
 # course-registration-gui
 
-![](adminGIF.gif)
+![](https://github.com/jmassre/course-registration-gui/blob/master/AdminGIF.gif)
