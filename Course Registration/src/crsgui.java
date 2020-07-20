@@ -35,7 +35,7 @@ public class crsgui {
 	public static CourseList c = null;
 	
 	//filename
-    public static String filename = "regiunrginerh.ser"; 
+    public static String filename = "SerializedFile.ser"; 
     public static File f = new File(filename);
     ArrayList<Course> courses  = c.courses;
     public static Scanner scan = new Scanner(System.in);
