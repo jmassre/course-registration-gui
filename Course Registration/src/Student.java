@@ -31,7 +31,7 @@ public class Student extends User implements studentInterface, Serializable {
 	}
 
 	/*
-	 * Allows student to view all courses in registrar.
+	 * Allows student to view all courses in registrar. -- non GUI
 	 * @param CourseList object c
 	 */
 	@Override
@@ -46,9 +46,14 @@ public class Student extends User implements studentInterface, Serializable {
 		
 	}
 	
+	/*
+	 * Allows student to view all courses in registrar. --  GUI
+	 * @param CourseList object c
+	 */
 	public void viewAllGUI(CourseList c) {
 		ArrayList<Course> courses  = c.courses;
 		
+		//initialize string to put into text area and add for each class
 		String print =" \n";
 		for (int i=0;i<courses.size();i++) {
 			print+=("        Course Name:"+" "+courses.get(i).getCourseName()+ "\n");
@@ -62,19 +67,21 @@ public class Student extends User implements studentInterface, Serializable {
 	
 		}
 
-		
+		//put string into text area
 		JTextArea textArea = new JTextArea(print);
 		textArea.setBackground((new Color(119, 136, 153)));
 		
+		//put into scroll pane
 		textArea.setEditable(false);
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		scrollPane.setBounds(-16, 84, 496, 384);
 		
-		
+		//put scroll pane into content pane
 		ViewAllStudent.contentPane.add(scrollPane);
 	}
+	
 	/*
-	 * Allows student to view all open courses.
+	 * Allows student to view all open courses. -- non GUI
 	 * @param CourseList object c
 	 */
 	@Override
@@ -91,6 +98,10 @@ public class Student extends User implements studentInterface, Serializable {
 		
 	}
 	
+	/*
+	 * Allows student to view all open courses. --  GUI
+	 * @param CourseList object c
+	 */
 	public void viewOpenGUI(CourseList c) {
 		ArrayList<Course> courses  = c.courses;
 		String print =" \n";
@@ -99,7 +110,7 @@ public class Student extends User implements studentInterface, Serializable {
 		
 		for (int i=0;i<courses.size();i++) {
 			
-			//check if the course isn't maxed out and if it isn't print the course name
+			//check if the course isn't maxed out and if it isn't add to the string the course name
 			if (courses.get(i).getCurrentStudents() < courses.get(i).getMaxStudents()) {
 				print+=("        Course Name:"+" "+courses.get(i).getCourseName()+ "\n");
 				print+=("        Course ID: "+ courses.get(i).getCourseID()+"\n");
@@ -111,6 +122,7 @@ public class Student extends User implements studentInterface, Serializable {
 				print+="\n";
 				
 			}
+			//increase counter if a class is maxed out
 			else {
 				counter++;
 			}
@@ -124,22 +136,25 @@ public class Student extends User implements studentInterface, Serializable {
 		lblSorryAllCourses.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		lblSorryAllCourses.setBounds(109, 177, 243, 29);
 		
+		//if all courses maxed out, say it and dont display antything
 		if(counter==courses.size()) {
 			ViewOpenStudent.contentPane.add(lblSorryAllCourses);
 			
 		}
 		else {
 			
-		
+			//if not then add the string to text area
 	
 			JTextArea textArea = new JTextArea(print);
 			textArea.setBackground((new Color(119, 136, 153)));
 			
 			textArea.setEditable(false);
+			
+			//add text area to scroll pane
 			JScrollPane scrollPane = new JScrollPane(textArea);
 			scrollPane.setBounds(-16, 84, 496, 384);
 			
-			
+			//add scroll pane to content pane
 			ViewOpenStudent.contentPane.add(scrollPane);
 			
 			
@@ -147,7 +162,7 @@ public class Student extends User implements studentInterface, Serializable {
 		
 	}
 	/*
-	 * Allows student to register in a course.
+	 * Allows student to register in a course. -- non GUI
 	 * @param CourseList object c
 	 */
 	@Override
@@ -222,18 +237,29 @@ public class Student extends User implements studentInterface, Serializable {
 		}		
 	}
 	
-	
+	/*
+	 * Allows student to register in a course. --  GUI
+	 * @param CourseList object c
+	 */
 	public void registerGUI(CourseList c, int pos) {
+		
+		//get all strings from text area
 		RegisterCourseStudent.contentPane.remove(RegisterCourseStudent.getLblSorryYoureAlready());
 		RegisterCourseStudent.contentPane.remove(RegisterCourseStudent.getLblSorryThisCourse());
 		RegisterCourseStudent.contentPane.remove(RegisterCourseStudent.getLblSuccess());
 		ArrayList<Course> courses  = c.courses;
+		
+		//if person already enrolled, error message
 		if(this.getRegisteredClasses().contains(courses.get(pos))) {
 			RegisterCourseStudent.contentPane.add(RegisterCourseStudent.getLblSorryYoureAlready());
 		}
+		
+		//if class is maxed out, error message
 		else if(courses.get(pos).getCurrentStudents()==courses.get(pos).getMaxStudents()) {
 			RegisterCourseStudent.contentPane.add(RegisterCourseStudent.getLblSorryThisCourse());
 		}
+		
+		//if not, add them to class
 		else {
 			courses.get(pos).setCurrentStudents(courses.get(pos).getCurrentStudents()+1); //add amount of students
 			courses.get(pos).getFirstNames().add(this.getFirstName()); //add firstname
@@ -250,7 +276,7 @@ public class Student extends User implements studentInterface, Serializable {
 		
 	}
 	/*
-	 * Allows student to withdraw from a course.
+	 * Allows student to withdraw from a course. -- non GUI
 	 * @param CourseList object c
 	 */
 	@Override
@@ -321,12 +347,18 @@ public class Student extends User implements studentInterface, Serializable {
 		}
 		
 	}
+	
+	/*
+	 * Allows student to withdraw from a course. --  GUI
+	 * @param CourseList object c
+	 */
 	public void withdrawGUI(CourseList c, int pos) {
 		ArrayList<Course> courses  = c.courses;
 		
-		
+		//get the course object
 		Course correctCourse = this.getRegisteredClasses().get(pos);
-				
+			
+		
 		WithdrawCourseStudent.contentPane.remove(WithdrawCourseStudent.getLblSuccess());
 		correctCourse.setCurrentStudents(courses.get(pos).getCurrentStudents()-1); //decreased amount of enrolled students 
 		
@@ -341,7 +373,7 @@ public class Student extends User implements studentInterface, Serializable {
 		WithdrawCourseStudent.contentPane.add(WithdrawCourseStudent.getLblSuccess());
 	}
 	/*
-	 * Allows student to view courses they are registered in.
+	 * Allows student to view courses they are registered in. -- non GUI
 	 * @param CourseList object c
 	 */
 	@Override
@@ -359,15 +391,20 @@ public class Student extends User implements studentInterface, Serializable {
 		}
 		
 	}
-	
+	/*
+	 * Allows student to view courses they are registered in. -- GUI
+	 * @param CourseList object c
+	 */
 	public void viewRegisteredGUI() {
+		
+		//if student isnt registered in anything, error message
 		if (this.getRegisteredClasses().size()==0) {
 			ViewRegisteredStudent.contentPane.add(ViewRegisteredStudent.getLblYouAreCurrently());
 			
 		}
 		else {
 			
-
+			//if student is registered, add each class to the string
 			
 			String print="\n";
 			for (int i=0;i<this.getRegisteredClasses().size();i++) {
@@ -375,14 +412,18 @@ public class Student extends User implements studentInterface, Serializable {
 				
 				
 			}
+			
+			//add string to text area
 			JTextArea textArea = new JTextArea(print);
 			textArea.setBackground((new Color(119, 136, 153)));
 			
 			textArea.setEditable(false);
+			
+			//add text area to scroll pane
 			JScrollPane scrollPane = new JScrollPane(textArea);
 			scrollPane.setBounds(0, 100, 479, 157);
 			
-			
+			//add scroll pane to content pane
 			ViewRegisteredStudent.contentPane.add(scrollPane);
 		}
 	}

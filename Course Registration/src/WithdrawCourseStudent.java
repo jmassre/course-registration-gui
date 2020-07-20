@@ -41,6 +41,8 @@ public class WithdrawCourseStudent extends JFrame {
 	 * Create the frame.
 	 */
 	public WithdrawCourseStudent() {
+		
+		//set the contentpane background stuff
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(new Color(119, 136, 153));
 		setBounds(500,100,480,480);
@@ -50,26 +52,29 @@ public class WithdrawCourseStudent extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-	
+		//label on top
 		JLabel lblNewCourseMenu = new JLabel("WITHDRAW FROM A COURSE");
 		lblNewCourseMenu.setFont(new Font("Lucida Grande", Font.BOLD, 25));
-		lblNewCourseMenu.setBounds(79, 42, 304, 44);
+		lblNewCourseMenu.setBounds(47, 42, 373, 44);
 		contentPane.add(lblNewCourseMenu);
 		
 		
-		
+		//withdraw button
 		btnWithdraw = new JButton("Withdraw");
 		btnWithdraw.setBounds(280, 260, 117, 29);
 		contentPane.add(btnWithdraw);
 		
+		//main menu button
 		btnMainMenu = new JButton("Main Menu");
 		btnMainMenu.setBounds(36, 423, 117, 29);
 		contentPane.add(btnMainMenu);
 		
+		//log out button
 		btnLogOut = new JButton("Log Out");
 		btnLogOut.setBounds(320, 423, 117, 29);
 		contentPane.add(btnLogOut);
 		
+		//initialize label but dont add
 		lblSuccess = new JLabel("Success!");
 		lblSuccess.setBounds(290, 296, 61, 16);
 		

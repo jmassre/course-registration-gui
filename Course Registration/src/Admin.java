@@ -1,5 +1,6 @@
 /*
  * The Admin class represents the admin.
+ * Methods used in the GUI run class end in "GUI"
  * @author Joseph Massre
  * @version 1
  */
@@ -33,7 +34,7 @@ public class Admin extends User implements adminInterface, Serializable {
 
 
 	/*
-	 * deletes course from registrar
+	 * deletes course from registrar -- non GUI
 	 * @param CourseList object c
 	 */
 	@Override
@@ -99,6 +100,10 @@ public class Admin extends User implements adminInterface, Serializable {
 			
 	}
 	
+	/*
+	 * deletes course from registrar
+	 * @param CourseList object c
+	 */
 	
 	public void deleteCourseGUI(CourseList c, int pos) {
 
@@ -119,7 +124,7 @@ public class Admin extends User implements adminInterface, Serializable {
 	}
 	
 	/*
-	 * allows admin to edit info on course except for course name and course id
+	 * allows admin to edit info on course except for course name and course id -- non GUI
 	 * @param CourseList object c
 	 */
 	@Override
@@ -221,43 +226,52 @@ public class Admin extends User implements adminInterface, Serializable {
 	}
 	
 	
-	
+	/*
+	 * allows admin to edit info on course except for course name and course id
+	 * @param CourseList object c
+	 */
 	public void editCourseGUI(CourseList c, int pos, int buttonChosen) {
 		
 		ArrayList<Course> courses  = c.courses;
 		
+		//get the text in the text boxes
 		String max = EditCourseTwoAdmin.getMaxStudentsText().getText();
 		String location = EditCourseTwoAdmin.getLocationText().getText();
 		String section = EditCourseTwoAdmin.getSectionText().getText();
 		String instructor = EditCourseTwoAdmin.getInstructorText().getText();
 		
+		//remove any possible labels
 		EditCourseTwoAdmin.contentPane.remove(EditCourseTwoAdmin.getLblPleaseEnterA());
 		EditCourseTwoAdmin.contentPane.remove(EditCourseTwoAdmin.getLblPleaseEnterA2());
 		EditCourseTwoAdmin.contentPane.remove(EditCourseTwoAdmin.getLblThisSectionNumber());
 		EditCourseTwoAdmin.contentPane.remove(EditCourseTwoAdmin.getLblYourCourseHas());
 		
+		//refresh
 		EditCourseTwoAdmin.contentPane.setVisible(false);
 		EditCourseTwoAdmin.contentPane.setVisible(true);
 		
-		
+		//edit the max
 		if(buttonChosen==1) {
 			try {	
 				int maximum = Integer.parseInt(max);
 				courses.get(pos).setMaxStudents(maximum);
 				EditCourseTwoAdmin.contentPane.add(EditCourseTwoAdmin.getLblYourCourseHas());
 			}
+			//if cant, put label exception
 			catch(Exception e) {
 				EditCourseTwoAdmin.contentPane.add(EditCourseTwoAdmin.getLblPleaseEnterA());
 				EditCourseTwoAdmin.contentPane.setVisible(false);
 				EditCourseTwoAdmin.contentPane.setVisible(true);
 			}
 		}
+		//edit section
 		else if(buttonChosen==2) {
 			int intCount=0;
 			try {
 				Integer.parseInt(section);
 				
 			}
+			//if cant parse int, put label exception for number
 			catch(Exception e) {
 				EditCourseTwoAdmin.contentPane.add(EditCourseTwoAdmin.getLblPleaseEnterA2());
 				EditCourseTwoAdmin.contentPane.setVisible(false);
@@ -266,6 +280,7 @@ public class Admin extends User implements adminInterface, Serializable {
 			}
 			int sameCount=0;
 			System.out.println(sameCount);
+			//if section exists put label exception
 			for(int i=0;i<courses.size();i++) {
 				if(courses.get(i).getCourseName().equals(courses.get(pos).getCourseName()) && courses.get(i).getSection().equals(EditCourseTwoAdmin.getSectionText().getText()) ) {
 					EditCourseTwoAdmin.contentPane.add(EditCourseTwoAdmin.getLblThisSectionNumber());
@@ -281,11 +296,13 @@ public class Admin extends User implements adminInterface, Serializable {
 			
 			
 		}
+		//edit  instructior
 		else if(buttonChosen==3) {
 			courses.get(pos).setInstructor(instructor);
 			EditCourseTwoAdmin.contentPane.add(EditCourseTwoAdmin.getLblYourCourseHas());
 		
 		}
+		// edit location
 		else if(buttonChosen==4) {
 			courses.get(pos).setLocation(location);
 			EditCourseTwoAdmin.contentPane.add(EditCourseTwoAdmin.getLblYourCourseHas());
@@ -297,7 +314,7 @@ public class Admin extends User implements adminInterface, Serializable {
 		
 	}
 	/*
-	 * displays information for a given course
+	 * displays information for a given course -- non GUI
 	 * @param CourseList object c
 	 */
 	@Override
@@ -343,10 +360,15 @@ public class Admin extends User implements adminInterface, Serializable {
 		}
 	}
 	
+	
+	/*
+	 * displays information for a given course --  GUI
+	 * @param CourseList object c
+	 */
 	public void courseInfoGUI(CourseList c, int pos) {
 		ArrayList<Course> courses  = c.courses;
 		
-		
+		//initialize the string to put into JTextArea
 		String print =" \n";
 		
 			print+=("     Course Name:"+" "+courses.get(pos).getCourseName()+ "\n");
@@ -356,6 +378,7 @@ public class Admin extends User implements adminInterface, Serializable {
 			print+=("     Max Enrollment: "+ Integer.toString(courses.get(pos).getMaxStudents())+"\n");
 
 			print+=("     Registered Students: ");
+			//add in first names in same line and with commas
 			for (int n=0; n<courses.get(pos).getFirstNames().size();n++) {
 				if(n==courses.get(pos).getFirstNames().size()-1 ) {
 					print+=(courses.get(pos).getFirstNames().get(n)+" "+courses.get(pos).getLastNames().get(n));
@@ -367,19 +390,19 @@ public class Admin extends User implements adminInterface, Serializable {
 				
 			}
 			
-
+		//put into text area
 		JTextArea textArea = new JTextArea(print);
 		textArea.setBackground((new Color(119, 136, 153)));
 		textArea.setBounds(6, 135, 480, 135);
 		textArea.setEditable(false);
 		
 		
-		
+		//add into contentPane
 		CourseInfoTwoAdmin.contentPane.add(textArea);
 	}
 
 	/*
-	 * registers a student in a class
+	 * registers a student in a class -- non GUI
 	 * @param CourseList object c
 	 */
 	@Override
@@ -424,21 +447,28 @@ public class Admin extends User implements adminInterface, Serializable {
 		
 	}
 	
+	
+	/*
+	 * registers a student in a class -- GUI
+	 * @param CourseList object c
+	 */
+
 	public void registerGUI() {
 		
 		
 		
 		
 		
-		
+		//get text from text box
 		String firstName = NewStudentAdmin.getFirstText().getText();
 		String lastName = NewStudentAdmin.getLastText().getText();
 		String username = NewStudentAdmin.getUserText().getText();
 		String password = NewStudentAdmin.getPassText().getText();
 		String ID = NewStudentAdmin.getIdText().getText();
+		lblCongrats = new JLabel("Congrats! "+ NewStudentAdmin.getFirstText().getText() +" "+  NewStudentAdmin.getLastText().getText()+" has been added.");
+		lblCongrats.setBounds(72, 356, 347, 16);
 		
-		
-		
+		//remove any error message
 		NewStudentAdmin.contentPane.remove(NewStudentAdmin.getLabel());
 		
 		NewStudentAdmin.contentPane.remove(NewStudentAdmin.getLblThisUsernameAlready());
@@ -451,31 +481,36 @@ public class Admin extends User implements adminInterface, Serializable {
 		int sameID = 0;
 		int sameUser= 0;
 		
-		
+		//use counters to check what to error handle
 		for(int i=0;i<studentRegistered.size();i++) {
+			//if user already exists
 			if(studentRegistered.get(i).getUsername().toLowerCase().equals(username.toLowerCase())) {
 				sameUser++;
 			}
-			
+			//if id exists
 			if(studentRegistered.get(i).getID().equals(ID)) {
 				sameID++;
 	
 			}
 		}
 		
-		
+		//if id exists, error handle
 		if(sameID>0 && sameUser==0) {
 			NewStudentAdmin.contentPane.add(NewStudentAdmin.getLabel());
 			NewStudentAdmin.contentPane.setVisible(false);
 			NewStudentAdmin.contentPane.setVisible(true);
 			
 		}
+		
+		//if user exists, error handle
 		else if(sameUser>0 && sameID==0) {
 			NewStudentAdmin.contentPane.add(NewStudentAdmin.getLblThisUsernameAlready());
 			NewStudentAdmin.contentPane.setVisible(false);
 			NewStudentAdmin.contentPane.setVisible(true);
 			
 		}
+		
+		// if user and id exist, error handle
 		else if(sameUser>0 && sameID>0) {
 			NewStudentAdmin.contentPane.add(NewStudentAdmin.getLblThisUsernameAlready());
 			
@@ -488,11 +523,11 @@ public class Admin extends User implements adminInterface, Serializable {
 			
 		}
 		
+		//if not, try to parse int for id 
 		else {
 			try {
-				
+				//add the new student
 				Integer.parseInt(ID);
-				//if they dont exist, create the student and add it to the studentRegistered list of student objects
 				studentRegistered.add(new Student(username, password, firstName, lastName, ID));
 				
 				lblCongrats = new JLabel("Congrats! "+ NewStudentAdmin.getFirstText().getText() +" "+  NewStudentAdmin.getLastText().getText()+" has been added.");
@@ -502,6 +537,7 @@ public class Admin extends User implements adminInterface, Serializable {
 				
 				
 			}
+			//error handle
 			catch(Exception e) {
 				NewStudentAdmin.contentPane.remove(lblCongrats);
 				NewStudentAdmin.contentPane.add(NewStudentAdmin.getLblNumber());
@@ -515,7 +551,7 @@ public class Admin extends User implements adminInterface, Serializable {
 	
 }
 	/*
-	 * shows all courses including their roster, # students enrolled, and max students
+	 * shows all courses including their roster, # students enrolled, and max students -- non GUI
 	 * @param CourseList object c
 	 */
 	@Override
@@ -578,20 +614,21 @@ public class Admin extends User implements adminInterface, Serializable {
 	
 	
 	/*
-	 * shows all courses including their roster, # students enrolled, and max students
+	 * shows all courses including their roster, # students enrolled, and max students -- GUI
 	 * @param CourseList object c
 	 */
 	@Override
 	public void viewAllGUI(CourseList c) {
 		ArrayList<Course> courses  = c.courses;
 		
-		
+		//initialize string to put into JTextArea
 		String print =" \n";
 		for (int i=0;i<courses.size();i++) {
 			print+=("        Course Name:"+" "+courses.get(i).getCourseName()+ "\n");
 			print+=("        Amount Enrolled: "+ courses.get(i).getCurrentStudents()+"\n");
 			print+=("        Max Enrollment: "+ Integer.toString(courses.get(i).getMaxStudents())+"\n");
 			print+=("        Registered Students: ");
+			//loop through to get the students in with/without commas after
 			for (int n=0; n<courses.get(i).getFirstNames().size();n++) {
 				if(n==courses.get(i).getFirstNames().size()-1 ) {
 					print+=(courses.get(i).getFirstNames().get(n)+" "+courses.get(i).getLastNames().get(n));
@@ -613,20 +650,21 @@ public class Admin extends User implements adminInterface, Serializable {
 		
 		
 		
-		
+		//initialize text area and put in the string
 		JTextArea textArea = new JTextArea(print);
 		textArea.setBackground((new Color(119, 136, 153)));
 		
+		//put into scroll pane
 		textArea.setEditable(false);
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		scrollPane.setBounds(-16, 84, 496, 384);
 		
-		
+		//put scroll pane into content pane
 		AllCoursesAdmin.contentPane.add(scrollPane);
 		
 	}
 	/*
-	 * shows all full courses
+	 * shows all full courses -- non GUI
 	 * @param CourseList object c
 	 */
 	@Override
@@ -654,6 +692,11 @@ public class Admin extends User implements adminInterface, Serializable {
 		}
 		
 	}
+	
+	/*
+	 * shows all full courses --  GUI
+	 * @param CourseList object c
+	 */
 	public void viewFullGUI(CourseList c) {
 		ArrayList<Course> courses  = c.courses;
 		int counter=0;
@@ -664,12 +707,16 @@ public class Admin extends User implements adminInterface, Serializable {
 				counter+=1;
 			}
 		}
+		//if there are no full classes, put a label saying that
 		if (counter==0) {
 			ViewFullAdmin.contentPane.add(ViewFullAdmin.getLblNoFull());
 		}
+		
+		//else, say here are the full classes
 		else {
 			ViewFullAdmin.contentPane.add(ViewFullAdmin.getLblHereIsA());
 		}
+		//add the class info to the string
 		for (int i=0;i<courses.size();i++) {
 			if (courses.get(i).getCurrentStudents()== courses.get(i).getMaxStudents()) {
 				
@@ -697,14 +744,18 @@ public class Admin extends User implements adminInterface, Serializable {
 			}
 			
 		}
+		
+		//put string into text area
 		JTextArea textArea = new JTextArea(print);
 		textArea.setBackground((new Color(119, 136, 153)));
 		
 		textArea.setEditable(false);
+		
+		//put text area into scroll pane
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		scrollPane.setBounds(-16, 100, 496, 384);
 		
-		
+		//put scroll pane into content pane
 		ViewFullAdmin.contentPane.add(scrollPane);
 		
 			
@@ -712,7 +763,7 @@ public class Admin extends User implements adminInterface, Serializable {
 		
 	}
 	/*
-	 * writes all full courses to a file
+	 * writes all full courses to a file -- non GUI
 	 * @param CourseList object c
 	 */
 	@Override
@@ -741,6 +792,11 @@ public class Admin extends User implements adminInterface, Serializable {
 		
 		
 	}
+	
+	/*
+	 * writes all full courses to a file -- GUI
+	 * @param CourseList object c
+	 */
 	public void writeFullGUI(CourseList c) {
 		try {
 			ArrayList<Course> courses  = c.courses;
@@ -759,12 +815,13 @@ public class Admin extends User implements adminInterface, Serializable {
 				
 			}
 		catch(Exception e) {
+			//if it didnt work, say it didnt work
 			WriteFileAdmin.contentPane.add(WriteFileAdmin.getLblTheFileCould());
 		
 		}
 	}
 	/*
-	 * view all registered students in a course
+	 * view all registered students in a course -- non GUI
 	 * @param CourseList object c
 	 */
 	@Override
@@ -840,30 +897,39 @@ public class Admin extends User implements adminInterface, Serializable {
 		
 	}
 	
+	
+	/*
+	 * view all registered students in a course -- GUI
+	 * @param CourseList object c
+	 */
 	public void viewRegisteredGUI(CourseList c, int pos) {
 		ArrayList<Course> courses  = c.courses;
+		
+		//initialize string for text area
 		String print="\n";
+		//add ppl to the string
 		for (int i=0; i<courses.get(pos).getFirstNames().size();i++) {
 			print+=("   •"+courses.get(pos).getFirstNames().get(i)+" "+courses.get(pos).getLastNames().get(i)+"\n");
 	
 		}
 		
+		//add string to text area
 		JTextArea textArea = new JTextArea(print);
 		textArea.setBackground((new Color(119, 136, 153)));
 		
 		textArea.setEditable(false);
 		textArea.setBackground((new Color(119, 136, 153)));
 		
-		
+		//add text area to scroll pane 
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		scrollPane.setBounds(0, 100, 479, 157);
 		
-		
+		//add scroll pane to content pane
 		CourseRosterTwoAdmin.contentPane.add(scrollPane);
 		
 	}
 	/*
-	 * views all courses a given student is registered in
+	 * views all courses a given student is registered in -- non GUI
 	 * @param CourseList object c
 	 */
 	@Override
@@ -909,9 +975,18 @@ public class Admin extends User implements adminInterface, Serializable {
 		
 	}
 	
+	
+	/*
+	 * views all courses a given student is registered in -- GUI
+	 * @param CourseList object c
+	 */
 	public void viewStudentCoursesGUI(CourseList c, int pos) {
 		ArrayList<Course> courses  = c.courses;
+		
+		//initialize string to put into text area
 		String print="\n";
+		
+		//add info to string of each class that the student is enrolled in
 		for (int i=0;i<courses.size();i++) {
 			if (courses.get(i).getLastNames().size()>0) {
 				for (int n=0; n<courses.get(i).getLastNames().size();n++) {
@@ -931,23 +1006,24 @@ public class Admin extends User implements adminInterface, Serializable {
 			
 		}
 		
+		//put string into text area
 		JTextArea textArea = new JTextArea(print);
 		textArea.setBackground((new Color(119, 136, 153)));
 		
 		textArea.setEditable(false);
 		textArea.setBackground((new Color(119, 136, 153)));
 		
-		
+		//put text area into scroll pane
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		scrollPane.setBounds(-16, 100, 496, 384);
 		
-		
+		//put scroll pane into content pane
 		StudentCoursesTwoAdmin.contentPane.add(scrollPane);
 	}
 
 	
 	/*
-	 * sorts all courses by # of registered students
+	 * sorts all courses by # of registered students -- non GUI
 	 * @param CourseList object c
 	 */
 	@Override
@@ -973,6 +1049,10 @@ public class Admin extends User implements adminInterface, Serializable {
 		
 	}
 	
+	/*
+	 * sorts all courses by # of registered students -- non GUI
+	 * @param CourseList object c
+	 */
 	
 	public void sortCoursesGUI(CourseList c) {
 		ArrayList<Course> courses  = c.courses;
@@ -988,7 +1068,11 @@ public class Admin extends User implements adminInterface, Serializable {
 				}
 			}
 		}
+		
+		//initialize string  to put into text area
 		String print =" \n";
+		
+		//add every class to string
 		for (int i=0;i<courses.size();i++) {
 			print+=("        Course Name:"+" "+courses.get(i).getCourseName()+ "\n");
 			print+=("        Amount Enrolled: "+ courses.get(i).getCurrentStudents()+"\n");
@@ -1015,14 +1099,17 @@ public class Admin extends User implements adminInterface, Serializable {
 		
 		
 		
-		
+		//add string to text area
 		JTextArea textArea = new JTextArea(print);
 		textArea.setBackground((new Color(119, 136, 153)));
 		
+		
+		//add text area to scroll pane
 		textArea.setEditable(false);
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		scrollPane.setBounds(-16, 100, 496, 384);
 		
+		//add scroll pane to contentpane
 		SortAdmin.contentPane.add(scrollPane);
 	}
 	/*
